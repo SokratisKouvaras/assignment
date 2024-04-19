@@ -1,6 +1,7 @@
 import logging
 from sqlalchemy import types
 from datetime import datetime
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -8,22 +9,22 @@ PG_DATA_TYPES = {
     "hvfhs_license_num": types.Text,
     "dispatching_base_num": types.Text,
     "originating_base_num": types.Text,
-    "request_datetime": types.TIMESTAMP(0),
-    "on_scene_datetime": types.TIMESTAMP(0),
-    "pickup_datetime": types.TIMESTAMP(0),
-    "dropoff_datetime": types.TIMESTAMP(0),
-    "PULocationID": types.Integer,
-    "DOLocationID": types.Integer,
-    "trip_miles": types.Float,
-    "trip_time": types.Integer,
-    "base_passenger_fare": types.Float,
-    "tolls": types.Float,
-    "bcf": types.Float,
-    "sales_tax": types.Float,
-    "congestion_surcharge": types.Float,
-    "airport_fee": types.Float,
-    "tips": types.Float,
-    "driver_pay": types.Float,
+    "request_datetime": types.Text,
+    "on_scene_datetime": types.Text,
+    "pickup_datetime": types.Text,
+    "dropoff_datetime": types.Text,
+    "PULocationID": types.Text,
+    "DOLocationID": types.Text,
+    "trip_miles": types.Text,
+    "trip_time": types.Text,
+    "base_passenger_fare": types.Text,
+    "tolls": types.Text,
+    "bcf": types.Text,
+    "sales_tax": types.Text,
+    "congestion_surcharge": types.Text,
+    "airport_fee": types.Text,
+    "tips": types.Text,
+    "driver_pay": types.Text,
     "shared_request_flag": types.Text,
     "shared_match_flag": types.Text,
     "access_a_ride_flag": types.Text,
@@ -39,20 +40,19 @@ def get_parquet_content(year="2024", month="01"):
     in the assignment.
     The function returns the content of the GET request that is a parquet formatted string.
     """
-    import requests
 
     URL = f"https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_{year}-{month}.parquet"
     try:
         logger.warning(f"{datetime.now()}:Trying to fetch the content of {URL} ...")
-        r = requests.get(URL)
+        data = pd.read_parquet(path=URL)
         logger.warning(
             f"{datetime.now()}:Succesfully loaded the content of {URL} in memory"
         )
+        return data
     except Exception as e:
         logger.warning(
             f"{datetime.now()}:The following exception occured while trying to get the parquet content : {e}"
         )
-    return r.content
 
 
 def store_dataframe_to_pg(df_to_store, pg_table_name):
@@ -78,7 +78,7 @@ def store_dataframe_to_pg(df_to_store, pg_table_name):
         df_to_store.to_sql(
             pg_table_name,
             engine,
-            chunksize=100000,
+            chunksize=None,
             if_exists="replace",
             method=None,
             index=False,
@@ -95,15 +95,7 @@ def store_dataframe_to_pg(df_to_store, pg_table_name):
 
 
 def main():
-    import pandas as pd
-    from io import BytesIO
-
-    # get the content of the table and store it in a pandas dataframe
-    logger.warning(
-        f"{datetime.now()}:Converting the content of the parquet sting in a pandas dataframe..."
-    )
-    df_parquet = pd.read_parquet(BytesIO(get_parquet_content()))
-    logger.warning(f"{datetime.now()}:Succesfully created the pandas dataframe")
+    df_parquet = get_parquet_content()
     store_dataframe_to_pg(
         df_parquet, f"fhvhv_tripdata_{datetime.now():%Y_%m_%d_%H_%M_%S%z}"
     )
