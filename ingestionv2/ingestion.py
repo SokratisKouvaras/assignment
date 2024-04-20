@@ -10,7 +10,7 @@ from datetime import datetime
 # Generic config
 BATCH_SIZE = 100000
 LOCAL_PARQUET_FILENAME = "temp.parquet"
-PG_TABLE_NAME = f"fhvhv_tripdata_{datetime.now():%Y_%m_%d_%H_%M_%S%z}"
+
 CONNECTION_URL = sa.URL.create(
     "postgresql",
     username="postgres",
@@ -50,7 +50,7 @@ PG_DESTINATION_SCHEMA = "public"
 logger = logging.getLogger(__name__)
 
 
-def get_parquet_content(year="2024", month="01"):
+def get_parquet_content(dataset, year, month):
     """
     This function performs a GET request on the https://d37ci6vzurychx.cloudfront.net/trip-data/
     endpoint for the fhvhv_tripdata. The default year is set to 2024 and the default month to 01 as described
@@ -58,7 +58,7 @@ def get_parquet_content(year="2024", month="01"):
     The function stores the content of the get request on a local file.
     """
 
-    URL = f"https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_{year}-{month}.parquet"
+    URL = f"https://d37ci6vzurychx.cloudfront.net/trip-data/{dataset}_{year}-{month}.parquet"
     try:
         logger.warning(f"{datetime.now()}:Trying to fetch the content of {URL} ...")
 
@@ -69,14 +69,14 @@ def get_parquet_content(year="2024", month="01"):
         logger.warning(
             f"{datetime.now()}:Succesfully saved the content of {URL} in {LOCAL_PARQUET_FILENAME} file"
         )
-        return data
+        return
     except Exception as e:
         logger.warning(
             f"{datetime.now()}:The following exception occured while trying to get the parquet content : {e}"
         )
 
 
-def send_parquet_file_to_pg(parquet_file):
+def send_parquet_file_to_pg(parquet_file, pg_table_name):
     """
     This function splits a ParquetFile object into BATCH_SIZE number of batches
     as set in the config variable (hardcoded to 100k). Using a for loop
@@ -93,7 +93,7 @@ def send_parquet_file_to_pg(parquet_file):
             db_connection = ENGINE.connect()
             logger.warning(f"{datetime.now()} : Trying to send  batch {counter}")
             i.to_pandas().to_sql(
-                PG_TABLE_NAME,
+                pg_table_name,
                 con=db_connection,
                 chunksize=None,
                 if_exists="append",
@@ -112,10 +112,48 @@ def send_parquet_file_to_pg(parquet_file):
         )
 
 
-def main():
-    get_parquet_content()
+"""
+This function replaces the PG table with the newly ingested one
+"""
+
+
+def cleanup(old_pg_table_name, new_pg_table_name):
+    from sqlalchemy import text
+
+    sql = f"""
+    DROP TABLE IF EXISTS {new_pg_table_name};
+    ALTER TABLE {old_pg_table_name} RENAME TO {new_pg_table_name};
+    """
+    try:
+        logger.warning(
+            f"Trying to replace {old_pg_table_name} with {new_pg_table_name}"
+        )
+        db_connection = ENGINE.connect()
+        db_connection.execute(text(sql))
+        db_connection.commit()
+        db_connection.close()
+        logger.warning(
+            f"Successfully replaced {old_pg_table_name} with {new_pg_table_name}"
+        )
+    except Exception as e:
+        logger.warning(
+            f"An exception occured while trying to replace {old_pg_table_name} with {new_pg_table_name}"
+        )
+
+
+"""
+dataset : 'yellow_tripdata', 'green_tripdata','fhvhv_tripdata'
+"""
+
+
+def main(dataset="green_tripdata", year="2024", month="01"):
+    PG_TABLE_NAME = f"{dataset}_{year}_{month}_{datetime.now():%Y_%m_%d_%H_%M_%S%z}"
+    get_parquet_content(dataset, year, month)
     parquet_file = pq.ParquetFile(f"./{LOCAL_PARQUET_FILENAME}")
-    send_parquet_file_to_pg(parquet_file)
+    send_parquet_file_to_pg(parquet_file, PG_TABLE_NAME)
+    cleanup(
+        old_pg_table_name=PG_TABLE_NAME, new_pg_table_name=f"{dataset}_{year}_{month}"
+    )
 
 
 if __name__ == "__main__":
