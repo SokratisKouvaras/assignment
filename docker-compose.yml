@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   postgresql:
     image: docker.io/bitnami/postgresql:16
@@ -7,6 +9,12 @@ services:
       - 'postgresql_data:/bitnami/postgresql'
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
+    deploy:
+      resources:
+        reservations:
+          cpus: '4'
+          memory: 6G
+
 volumes:
   postgresql_data:
     driver: local

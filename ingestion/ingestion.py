@@ -5,6 +5,33 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
+PD_DATA_TYPES = {
+    "hvfhs_license_num": str,
+    "dispatching_base_num": str,
+    "originating_base_num": str,
+    "request_datetime": str,
+    "on_scene_datetime": str,
+    "pickup_datetime": str,
+    "dropoff_datetime": str,
+    "PULocationID": str,
+    "DOLocationID": str,
+    "trip_miles": str,
+    "trip_time": str,
+    "base_passenger_fare": str,
+    "tolls": str,
+    "bcf": str,
+    "sales_tax": str,
+    "congestion_surcharge": str,
+    "airport_fee": str,
+    "tips": str,
+    "driver_pay": str,
+    "shared_request_flag": str,
+    "shared_match_flag": str,
+    "access_a_ride_flag": str,
+    "wav_request_flag": str,
+    "wav_match_flag": str,
+}
+
 PG_DATA_TYPES = {
     "hvfhs_license_num": types.Text,
     "dispatching_base_num": types.Text,
@@ -44,7 +71,9 @@ def get_parquet_content(year="2024", month="01"):
     URL = f"https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_{year}-{month}.parquet"
     try:
         logger.warning(f"{datetime.now()}:Trying to fetch the content of {URL} ...")
-        data = pd.read_parquet(path=URL)
+        #5kk empty rows removed
+        data = pd.read_parquet(path=URL).astype(PD_DATA_TYPES)#.dropna()
+        print(data.dtypes)
         logger.warning(
             f"{datetime.now()}:Succesfully loaded the content of {URL} in memory"
         )
