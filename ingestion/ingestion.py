@@ -71,8 +71,8 @@ def get_parquet_content(year="2024", month="01"):
     URL = f"https://d37ci6vzurychx.cloudfront.net/trip-data/fhvhv_tripdata_{year}-{month}.parquet"
     try:
         logger.warning(f"{datetime.now()}:Trying to fetch the content of {URL} ...")
-        #5kk empty rows removed
-        data = pd.read_parquet(path=URL).astype(PD_DATA_TYPES)#.dropna()
+        # 5kk empty rows removed
+        data = pd.read_parquet(path=URL).astype(PD_DATA_TYPES)  # .dropna()
         print(data.dtypes)
         logger.warning(
             f"{datetime.now()}:Succesfully loaded the content of {URL} in memory"

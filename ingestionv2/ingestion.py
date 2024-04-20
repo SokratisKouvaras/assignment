@@ -12,13 +12,13 @@ BATCH_SIZE = 100000
 LOCAL_PARQUET_FILENAME = "temp.parquet"
 PG_TABLE_NAME = f"fhvhv_tripdata_{datetime.now():%Y_%m_%d_%H_%M_%S%z}"
 CONNECTION_URL = sa.URL.create(
-        "postgresql",
-        username="postgres",
-        password="",
-        host="127.0.0.1",
-        port="5432",
-        database="postgres",
-    )
+    "postgresql",
+    username="postgres",
+    password="",
+    host="127.0.0.1",
+    port="5432",
+    database="postgres",
+)
 ENGINE = sa.create_engine(CONNECTION_URL)
 PG_DATA_TYPES = {
     "hvfhs_license_num": types.Text,
@@ -78,13 +78,13 @@ def get_parquet_content(year="2024", month="01"):
 
 def send_parquet_file_to_pg(parquet_file):
     """
-    This function splits a ParquetFile object into BATCH_SIZE number of batches 
+    This function splits a ParquetFile object into BATCH_SIZE number of batches
     as set in the config variable (hardcoded to 100k). Using a for loop
     to iterate over all the batches it converts them to Pandas dataframes
     and using the to_sql function it writes them in Postgres.
     """
     counter = 1
-    
+
     logger.warning(
         f"{datetime.now()}: Trying to send parquet to PG using {BATCH_SIZE} batches"
     )
@@ -94,7 +94,7 @@ def send_parquet_file_to_pg(parquet_file):
             logger.warning(f"{datetime.now()} : Trying to send  batch {counter}")
             i.to_pandas().to_sql(
                 PG_TABLE_NAME,
-                con = db_connection,
+                con=db_connection,
                 chunksize=None,
                 if_exists="append",
                 method=None,
