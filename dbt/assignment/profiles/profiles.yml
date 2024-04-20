@@ -1,0 +1,12 @@
+assignment:
+  outputs:
+    dev:
+      dbname: postgres
+      host: 127.0.0.1
+      pass: ''
+      port: 5432
+      schema: public
+      threads: 8
+      type: postgres
+      user: postgres
+  target: dev
