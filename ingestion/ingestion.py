@@ -78,7 +78,7 @@ def store_dataframe_to_pg(df_to_store, pg_table_name):
         df_to_store.to_sql(
             pg_table_name,
             engine,
-            chunksize=None,
+            chunksize=100000,
             if_exists="replace",
             method=None,
             index=False,
