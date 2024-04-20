@@ -146,7 +146,7 @@ dataset : 'yellow_tripdata', 'green_tripdata','fhvhv_tripdata'
 """
 
 
-def main(dataset="green_tripdata", year="2024", month="01"):
+def main(dataset="fhvhv_tripdata", year="2024", month="01"):
     PG_TABLE_NAME = f"{dataset}_{year}_{month}_{datetime.now():%Y_%m_%d_%H_%M_%S%z}"
     get_parquet_content(dataset, year, month)
     parquet_file = pq.ParquetFile(f"./{LOCAL_PARQUET_FILENAME}")
