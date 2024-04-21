@@ -1,0 +1,13 @@
+version: 2
+seeds:
+  - name: taxi_zone_lookup
+    description: '{{ doc("seed_taxi_zone_lookup") }}'
+    columns:
+      - name: LocationID
+        description: '{{ doc("seed_locationid") }}'
+      - name: Borough
+        description: '{{ doc("seed_borough") }}'
+      - name: Zone
+        description: '{{ doc("seed_zone") }}'
+      - name: service_zone
+        description: '{{ doc("seed_service_zone") }}'
