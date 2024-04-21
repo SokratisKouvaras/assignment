@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+  - name: public
+    config:
+      enabled: true
+    tables:
+      - name: fhvhv_tripdata_2024_01
+        description: The data
+        columns:
+          - name: hvfhs_license_num
+            description: '{{ doc("seed_locationid") }}'
+            type: text
+          - name: dispatching_base_num
+            description: placeholder
+            type: text
+          - name: originating_base_num
+            description: placeholder
+            type: text
+          - name: request_datetime
+            description: placeholder
+            type: text
+          - name: on_scene_datetime
+            description: placeholder
+            type: text
+          - name: pickup_datetime
+            description: placeholder
+            type: text
+          - name: dropoff_datetime
+            description: placeholder
+            type: text
+          - name: "PULocationID"
+            description: placeholder
+            type: text
+          - name: "DOLocationID"
+            description: placeholder
+            type: text
+          - name: trip_miles
+            description: placeholder
+            type: text
+          - name: trip_time
+            description: placeholder
+            type: text
+          - name: base_passenger_fare
+            description: placeholder
+            type: text
+          - name: tolls
+            description: placeholder
+            type: text
+          - name: bcf
+            description: placeholder
+            type: text
+          - name: sales_tax
+            description: placeholder
+            type: text
+          - name: congestion_surcharge
+            description: placeholder
+            type: text
+          - name: airport_fee
+            description: placeholder
+            type: text
+          - name: tips
+            description: placeholder
+            type: text
+          - name: driver_pay
+            description: placeholder
+            type: text
+          - name: shared_request_flag
+            description: placeholder
+            type: text
+          - name: shared_match_flag
+            description: placeholder
+            type: text
+          - name: access_a_ride_flag
+            description: placeholder
+            type: text
+          - name: wav_request_flag
+            description: placeholder
+            type: text
+          - name: wav_match_flag
+            description: placeholder
+            type: text
