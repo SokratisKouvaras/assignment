@@ -14,64 +14,64 @@ models:
           type: text
         - name: request_datetime
           description: '{{ doc("CleansedZone_request_datetime") }}'
-          type: text
+          type: timestamp
         - name: on_scene_datetime
           description: '{{ doc("CleansedZone_on_scene_datetime") }}'
-          type: text
+          type: timestamp
         - name: pickup_datetime
           description: '{{ doc("CleansedZone_pickup_datetime") }}'
-          type: text
+          type: timestamp
         - name: dropoff_datetime
           description: '{{ doc("CleansedZone_dropoff_datetime") }}'
-          type: text
+          type: timestamp
         - name: "PULocationID"
           description: '{{ doc("CleansedZone_pu_location_id") }}'
-          type: text
+          type: int
         - name: "DOLocationID"
           description: '{{ doc("CleansedZone_do_location_id") }}'
-          type: text
+          type: int
         - name: trip_miles
           description: '{{ doc("CleansedZone_trip_miles") }}'
-          type: text
+          type: float
         - name: trip_time
           description: '{{ doc("CleansedZone_trip_time") }}'
-          type: text
+          type: float
         - name: base_passenger_fare
           description: '{{ doc("CleansedZone_base_passenger_fare") }}'
-          type: text
+          type: float
         - name: tolls
           description: '{{ doc("CleansedZone_tolls") }}'
-          type: text
+          type: float
         - name: bcf
           description: '{{ doc("CleansedZone_bcf") }}'
-          type: text
+          type: float
         - name: sales_tax
           description: '{{ doc("CleansedZone_sales_tax") }}'
-          type: text
+          type: float
         - name: congestion_surcharge
           description: '{{ doc("CleansedZone_congestion_surcharge") }}'
-          type: text
+          type: float
         - name: airport_fee
           description: '{{ doc("CleansedZone_airport_fee") }}'
-          type: text
+          type: float
         - name: tips
           description: '{{ doc("CleansedZone_tips") }}'
-          type: text
+          type: float
         - name: driver_pay
           description: '{{ doc("CleansedZone_driver_pay") }}'
-          type: text
+          type: float
         - name: shared_request_flag
           description: '{{ doc("CleansedZone_shared_request_flag") }}'
-          type: text
+          type: boolean
         - name: shared_match_flag
           description: '{{ doc("CleansedZone_shared_match_flag") }}'
-          type: text
+          type: boolean
         - name: access_a_ride_flag
           description: '{{ doc("CleansedZone_access_a_ride_flag") }}'
-          type: text
+          type: boolean
         - name: wav_request_flag
           description: '{{ doc("CleansedZone_wav_request_flag") }}'
-          type: text
+          type: boolean
         - name: wav_match_flag
           description: '{{ doc("CleansedZone_wav_match_flag") }}'
-          type: text
+          type: boolean

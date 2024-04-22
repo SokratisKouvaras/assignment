@@ -1,4 +1,4 @@
-{{ config(materialized='table', alias='DCZone_Trips') }}
+{{ config(materialized='table', alias='DCZone_DC_Trips') }}
 
 /* Expand the original data with date that derive from the timestamps and fill NULL values where it makes sense */
 WITH CTE_Expanded_Base AS (
@@ -38,6 +38,15 @@ FROM
 - Further expand the model with the vendor information 
 */
 SELECT
+    md5(
+        concat(
+            base.hvfhs_license_num,
+            base.pu_location_id,
+            base.pickup_datetime,
+            base.do_location_id,
+            base.dropoff_datetime
+            )
+        ) AS dw_trip_id,
     base.*,
     CASE
         WHEN base.airport_fee > 0 THEN TRUE
@@ -51,12 +60,21 @@ SELECT
         WHEN base.tips > 0 THEN TRUE
         ELSE FALSE
     END AS is_happy_customer,
+    CASE
+        WHEN base.hvfhs_license_num = 'HV0002' THEN 'Juno'
+        WHEN base.hvfhs_license_num = 'HV0003' THEN 'Uber'
+        WHEN base.hvfhs_license_num = 'HV0004' THEN 'Via'
+        WHEN base.hvfhs_license_num = 'HV0005' THEN 'Lyft'
+        ELSE 'Unknown'
+    END AS company_name,
     pick_up_metadata.borough as pick_up_borough,
     pick_up_metadata.zone as pick_up_zone,
     pick_up_metadata.service_zone as pick_up_service_zone,
     drop_off_metadata.borough as drop_off_borough,
     drop_off_metadata.zone as drop_off_zone,
-    drop_off_metadata.service_zone as drop_off_service_zone
+    drop_off_metadata.service_zone as drop_off_service_zone,
+    extract('week' from pickup_date) as pickup_week,
+    extract('week' from dropoff_date) as dropoff_week
 FROM CTE_Expanded_Base AS base
 LEFT JOIN {{ref("CleansedZone_TaxiZones")}} AS pick_up_metadata
 ON pick_up_metadata.location_id = base.pu_location_id

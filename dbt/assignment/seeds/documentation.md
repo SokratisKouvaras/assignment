@@ -5,7 +5,7 @@
 This table contains metadata related to the available taxi pick up zones.
 {% enddocs %}
 
-## Features
+#### Features
 {% docs seed_locationid %}
 This table contains metadata related to the available taxi pick up zones.
 {% enddocs %}
@@ -20,4 +20,11 @@ This table contains metadata related to the available taxi pick up zones.
 
 {% docs seed_service_zone %}
 This table contains metadata related to the available taxi pick up zones.
+For more information visit : https://data.cityofnewyork.us/Transportation/NYC-Taxi-Zones/d3c5-ddgc
+{% enddocs %}
+
+### current_bases.csv
+{% docs seed_current_bases %}
+This table contains metadata related to the bases that are currently active and available.
+For more information visit : https://www.nyc.gov/site/tlc/businesses/for-hire-vehicle-bases.page
 {% enddocs %}

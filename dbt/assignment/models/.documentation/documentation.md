@@ -124,12 +124,7 @@ The model features have been assigned the correct datatype and every column is i
 
 ### CleansedZone_FHVHV Features
 {% docs CleansedZone_hvfhs_license_num %}
-The TLC license number of the HVFHS base or business
-As of September 2019, the HVFHS licensees are the following:
-• HV0002: Juno
-• HV0003: Uber
-• HV0004: Via
-• HV0005: Lyft
+test
 {% enddocs %}
 
 {% docs CleansedZone_dispatching_base_num %}

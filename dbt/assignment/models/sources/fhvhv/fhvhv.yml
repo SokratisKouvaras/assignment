@@ -11,6 +11,11 @@ sources:
           - name: hvfhs_license_num
             description: '{{ doc("hvfhs_license_num") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['HV0002', 'HV0003','HV0004','HV0005']
+                config:
+                  severity: warn
           - name: dispatching_base_num
             description: '{{ doc("dispatching_base_num") }}'
             type: text
@@ -68,15 +73,40 @@ sources:
           - name: shared_request_flag
             description: '{{ doc("shared_request_flag") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
           - name: shared_match_flag
             description: '{{ doc("shared_match_flag") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
           - name: access_a_ride_flag
             description: '{{ doc("access_a_ride_flag") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
           - name: wav_request_flag
             description: '{{ doc("wav_request_flag") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
           - name: wav_match_flag
             description: '{{ doc("wav_match_flag") }}'
             type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
