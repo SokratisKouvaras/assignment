@@ -1,7 +1,7 @@
-{{ config(materialized='table', alias='DCZone_DC_Trips') }}
+{{ config(materialized='table', aliAS='DCZone_DC_Trips') }}
 
 /* Expand the original data with date that derive from the timestamps and fill NULL values where it makes sense */
-WITH CTE_Expanded_Base AS (
+WITH CTE_Expanded_BASe AS (
 SELECT
     hvfhs_license_num,
     dispatching_base_num,
@@ -67,16 +67,28 @@ SELECT
         WHEN base.hvfhs_license_num = 'HV0005' THEN 'Lyft'
         ELSE 'Unknown'
     END AS company_name,
-    pick_up_metadata.borough as pick_up_borough,
-    pick_up_metadata.zone as pick_up_zone,
-    pick_up_metadata.service_zone as pick_up_service_zone,
-    drop_off_metadata.borough as drop_off_borough,
-    drop_off_metadata.zone as drop_off_zone,
-    drop_off_metadata.service_zone as drop_off_service_zone,
-    extract('week' from pickup_date) as pickup_week,
-    extract('week' from dropoff_date) as dropoff_week
+    pick_up_metadata.borough AS pick_up_borough,
+    pick_up_metadata.zone AS pick_up_zone,
+    pick_up_metadata.service_zone AS pick_up_service_zone,
+    drop_off_metadata.borough AS drop_off_borough,
+    drop_off_metadata.zone AS drop_off_zone,
+    drop_off_metadata.service_zone AS drop_off_service_zone,
+    extract('week' from pickup_date) AS pickup_week,
+    extract('week' from dropoff_date) AS dropoff_week,
+    dispatching_base.latitude AS dispatching_base_latitude,
+    dispatching_base.longitude AS dispatching_base_longitude,
+    dispatching_base.type_of_base AS dispatching_base_type,
+    dispatching_base.entity_name AS dispatching_base_entity_name,
+    originating_base.latitude AS originating_base_latitude,
+    originating_base.longitude AS originating_base_longitude,
+    originating_base.type_of_base AS originating_base_type,
+    originating_base.entity_name AS originating_base_entity_name
 FROM CTE_Expanded_Base AS base
 LEFT JOIN {{ref("CleansedZone_TaxiZones")}} AS pick_up_metadata
 ON pick_up_metadata.location_id = base.pu_location_id
 LEFT JOIN {{ref("CleansedZone_TaxiZones")}} AS drop_off_metadata
 ON drop_off_metadata.location_id = base.do_location_id
+LEFT JOIN {{ref("CleansedZone_TaxiBases")}} AS dispatching_base
+ON dispatching_base.license_number = base.dispatching_base_num
+LEFT JOIN {{ref("CleansedZone_TaxiBases")}} AS originating_base
+ON originating_base.license_number = base.originating_base_num

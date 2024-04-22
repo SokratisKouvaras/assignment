@@ -95,5 +95,6 @@ If you have run out of energy or time for your project, put a note at the top of
 ## Docker compose
 docker-compose up -d
 
-docker build -t ingestion-python-script .
-docker run --net=host ing2
+cd ingestion
+docker build -t ingestion .
+docker run --net=host ingestion
