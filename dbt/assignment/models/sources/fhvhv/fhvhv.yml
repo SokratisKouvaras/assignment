@@ -6,77 +6,77 @@ sources:
       enabled: true
     tables:
       - name: fhvhv_tripdata_2024_01
-        description: The data
+        description: '{{ doc("FHVHV") }}'
         columns:
           - name: hvfhs_license_num
-            description: '{{ doc("seed_locationid") }}'
+            description: '{{ doc("hvfhs_license_num") }}'
             type: text
           - name: dispatching_base_num
-            description: placeholder
+            description: '{{ doc("dispatching_base_num") }}'
             type: text
           - name: originating_base_num
-            description: placeholder
+            description: '{{ doc("originating_base_num") }}'
             type: text
           - name: request_datetime
-            description: placeholder
+            description: '{{ doc("request_datetime") }}'
             type: text
           - name: on_scene_datetime
-            description: placeholder
+            description: '{{ doc("on_scene_datetime") }}'
             type: text
           - name: pickup_datetime
-            description: placeholder
+            description: '{{ doc("pickup_datetime") }}'
             type: text
           - name: dropoff_datetime
-            description: placeholder
+            description: '{{ doc("dropoff_datetime") }}'
             type: text
           - name: "PULocationID"
-            description: placeholder
+            description: '{{ doc("pu_location_id") }}'
             type: text
           - name: "DOLocationID"
-            description: placeholder
+            description: '{{ doc("do_location_id") }}'
             type: text
           - name: trip_miles
-            description: placeholder
+            description: '{{ doc("trip_miles") }}'
             type: text
           - name: trip_time
-            description: placeholder
+            description: '{{ doc("trip_time") }}'
             type: text
           - name: base_passenger_fare
-            description: placeholder
+            description: '{{ doc("base_passenger_fare") }}'
             type: text
           - name: tolls
-            description: placeholder
+            description: '{{ doc("tolls") }}'
             type: text
           - name: bcf
-            description: placeholder
+            description: '{{ doc("bcf") }}'
             type: text
           - name: sales_tax
-            description: placeholder
+            description: '{{ doc("sales_tax") }}'
             type: text
           - name: congestion_surcharge
-            description: placeholder
+            description: '{{ doc("congestion_surcharge") }}'
             type: text
           - name: airport_fee
-            description: placeholder
+            description: '{{ doc("airport_fee") }}'
             type: text
           - name: tips
-            description: placeholder
+            description: '{{ doc("tips") }}'
             type: text
           - name: driver_pay
-            description: placeholder
+            description: '{{ doc("driver_pay") }}'
             type: text
           - name: shared_request_flag
-            description: placeholder
+            description: '{{ doc("shared_request_flag") }}'
             type: text
           - name: shared_match_flag
-            description: placeholder
+            description: '{{ doc("shared_match_flag") }}'
             type: text
           - name: access_a_ride_flag
-            description: placeholder
+            description: '{{ doc("access_a_ride_flag") }}'
             type: text
           - name: wav_request_flag
-            description: placeholder
+            description: '{{ doc("wav_request_flag") }}'
             type: text
           - name: wav_match_flag
-            description: placeholder
+            description: '{{ doc("wav_match_flag") }}'
             type: text
