@@ -33,14 +33,32 @@ SELECT
 FROM 
     {{ref("CleansedZone_FHVHV")}}
 )
+/* 
+- Further expand the model by replacing the location ids with the metadata from the taxi zone seed.
+- Further expand the model with the vendor information 
+*/
 SELECT
     base.*,
     CASE
-        WHEN airport_fee > 0 THEN TRUE
+        WHEN base.airport_fee > 0 THEN TRUE
         ELSE FALSE
-    END AS IsAirportTrip,
+    END AS is_airport_trip,
     CASE
-        WHEN tips > 0 THEN TRUE
+        WHEN base.pu_location_id = do_location_id THEN TRUE
         ELSE FALSE
-    END AS IsHappyCustomer
-FROM CTE_Expanded_Base
+    END AS is_local_trip,
+    CASE
+        WHEN base.tips > 0 THEN TRUE
+        ELSE FALSE
+    END AS is_happy_customer,
+    pick_up_metadata.borough as pick_up_borough,
+    pick_up_metadata.zone as pick_up_zone,
+    pick_up_metadata.service_zone as pick_up_service_zone,
+    drop_off_metadata.borough as drop_off_borough,
+    drop_off_metadata.zone as drop_off_zone,
+    drop_off_metadata.service_zone as drop_off_service_zone
+FROM CTE_Expanded_Base AS base
+LEFT JOIN {{ref("CleansedZone_TaxiZones")}} AS pick_up_metadata
+ON pick_up_metadata.location_id = base.pu_location_id
+LEFT JOIN {{ref("CleansedZone_TaxiZones")}} AS drop_off_metadata
+ON drop_off_metadata.location_id = base.do_location_id
