@@ -225,3 +225,18 @@ Did the passenger request a wheelchair-accessible vehicle (WAV)?
 {% docs CleansedZone_wav_match_flag %}
 Did the trip occur in a wheelchair-accessible vehicle (WAV) (Y/N)
 {% enddocs %}
+
+# DCZone
+## Tables
+### DCZone_DC_Trips
+
+{% docs DCZone_DC_Trips %}
+This table is the expanded version of the original FHVHV trips model enriched with additional features related to the 
+taxi bases and pickup/drop-off locations.
+{% enddocs %}
+
+### CleansedZone_FHVHV Features
+{% docs DCZone_DC_Trips_dw_trip_id %}
+The primary key of the Trips domain concept. 
+
+{% enddocs %}
