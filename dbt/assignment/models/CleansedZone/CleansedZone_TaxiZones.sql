@@ -1,4 +1,4 @@
-{{ config(materialized='view',alias='TaxiZones') }}
+{{ config(alias='TaxiZones') }}
 
 SELECT
     "LocationID" AS location_id,

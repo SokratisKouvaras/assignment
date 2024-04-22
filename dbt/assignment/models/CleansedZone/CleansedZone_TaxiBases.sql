@@ -1,4 +1,4 @@
-{{ config(materialized='view',alias='TaxiBases') }}
+{{ config(alias='TaxiBases') }}
 
 SELECT
     license_number,

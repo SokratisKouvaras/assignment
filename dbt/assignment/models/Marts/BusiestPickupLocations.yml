@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: BusiestPickupLocations
+    description: This mart contains the top 5 busiest pick up locations based on the number of trips starting from them.
+    columns:
+        - name: pu_location_id
+          description: '{{ doc("CleansedZone_pu_location_id") }}'
+        - name: number_of_trips
+          description: The number of trips starting from the pick up location.

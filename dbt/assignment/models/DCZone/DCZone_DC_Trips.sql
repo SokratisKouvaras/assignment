@@ -1,4 +1,4 @@
-{{ config(materialized='table', aliAS='DCZone_DC_Trips') }}
+{{ config(alias='DCZone_DC_Trips') }}
 
 /* Expand the original data with date that derive from the timestamps and fill NULL values where it makes sense */
 WITH CTE_Expanded_BASe AS (
@@ -42,11 +42,14 @@ SELECT
         concat(
             base.hvfhs_license_num,
             base.pu_location_id,
+            base.request_datetime,
             base.pickup_datetime,
             base.do_location_id,
             base.dropoff_datetime
             )
         ) AS dw_trip_id,
+    extract('hour' from pickup_datetime) AS pickup_hour,
+    extract('hour' from dropoff_datetime) AS dropoff_hour,
     base.*,
     CASE
         WHEN base.airport_fee > 0 THEN TRUE

@@ -1,4 +1,4 @@
-{{ config(materialized='view', alias='FHVHV') }}
+{{ config(alias='FHVHV') }}
 
 SELECT
     hvfhs_license_num,
