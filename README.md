@@ -99,4 +99,7 @@ cd ingestion
 docker build -t ingestion .
 docker run --net=host ingestion
 
+docker build -t dbt .
+docker run --net=host dbt
+
 ## Insights
