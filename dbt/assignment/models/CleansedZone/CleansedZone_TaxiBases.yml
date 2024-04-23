@@ -5,40 +5,40 @@ models:
     columns:
       - name: license_number
         description: '{{ doc("seed_license_number") }}'
-        type: placeholder
+        type: text
       - name: entity_name
         description: '{{ doc("seed_entity_name") }}'
-        type: placeholder
+        type: text
       - name: telephone_number
         description: '{{ doc("seed_telephone_number") }}'
-        type: placeholder
+        type: text
       - name: shl_endorsed
         description: '{{ doc("seed_shl_endorsed") }}'
-        type: placeholder
+        type: text
       - name: building
         description: '{{ doc("seed_building") }}'
-        type: placeholder
+        type: text
       - name: street
         description: '{{ doc("seed_street") }}'
-        type: placeholder
+        type: text
       - name: city
         description: '{{ doc("seed_city") }}'
-        type: placeholder
+        type: text
       - name: state
         description: '{{ doc("seed_state") }}'
-        type: placeholder
+        type: text
       - name: postcode
         description: '{{ doc("seed_postcode") }}'
-        type: placeholder
+        type: text
       - name: type_of_base
         description: '{{ doc("seed_type_of_base") }}'
-        type: placeholder
+        type: text
       - name: latitude
         description: '{{ doc("seed_latitude") }}'
-        type: placeholder
+        type: text
       - name: longitude
         description: '{{ doc("seed_longitude") }}'
-        type: placeholder
+        type: text
       - name: date
         description: '{{ doc("seed_date") }}'
-        type: placeholder
+        type: date
