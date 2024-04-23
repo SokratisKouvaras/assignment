@@ -1,0 +1,12 @@
+version: 2
+models:
+  - name: Hourly
+    description: This mart contains the averages of traveled distance and travel duration by hour of day.
+    columns:
+        - name: pickup_hour
+          description: '{{ doc("CleansedZone_pu_location_id") }}'
+        - name: average_travel_distance_in_miles
+          description: The average trip distance for all trips of that pickup hour. Calculated as SUM(trip_miles)/COUNT(trips).It's measured in miles.
+        - name: average_travel_duration_in_seconds
+          description: The average trip duration for all trips of that pickup hour. Calculated as SUM(trip_time)/COUNT(trips).It's measured in seconds.
+          
