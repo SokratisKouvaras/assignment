@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: DailyTrips
+    description: This mart the number of trips per day.
+    columns:
+        - name: request_date
+          description: '{{ doc("CleansedZone_pu_location_id") }}'
+        - name: number_of_trips
+          description: The number of trips for that date.
+      
