@@ -5,13 +5,13 @@ models:
     columns:
       - name: LocationID
         description: '{{ doc("seed_locationid") }}'
-        type: placeholder
+        type: integer
       - name: Borough
         description: '{{ doc("seed_borough") }}'
-        type: placeholder
+        type: text
       - name: Zone
         description: '{{ doc("seed_zone") }}'
-        type: placeholder
+        type: text
       - name: service_zone
         description: '{{ doc("seed_service_zone") }}'
-        type: placeholder
+        type: text
