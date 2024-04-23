@@ -96,3 +96,70 @@ models:
         - name: wav_match_flag
           description: '{{ doc("CleansedZone_wav_match_flag") }}'
           type: boolean
+        - name: is_airport_trip
+          description: A boolean indicating if the trip was from/to airport.
+          type: boolean 
+        - name: is_local_trip
+          description: A boolean indicating if the trip was with the same location id.
+          type: boolean 
+        - name: is_happy_customer
+          description: A boolean indicating if the customer was happy enough to include a tip.
+          type: boolean
+        - name: company_name
+          description: The name of the company that the taxi base belongs to.
+          type: boolean
+        - name: pick_up_borough
+          description: The borough the pick up point belongs to.
+          type: text
+        - name: pick_up_zone
+          description: The zone the pick up point belongs to.
+          type: text
+        - name: pick_up_service_zone
+          description: The service zone the pick up point belongs to.
+          type: text
+        - name: drop_off_borough
+          description: The brorough of the drop off point.
+          type: text
+        - name: drop_off_zone
+          description: The zone of the drop off point.
+          type: text
+        - name: drop_off_service_zone
+          description: The service zone of the drop off point.
+          type: text
+        - name: pickup_week
+          description: The number of ISO week the pickup occured.
+          type: numeric
+        - name: dropoff_week
+          description: The number of ISO week the dropoff occured.
+          type: numeric
+        - name: dispatching_base_latitude
+          description: The latitude of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_longitude
+          description: The longitude of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_type
+          description: The type of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_entity_name
+          description: The company name of the dispatching taxi base.
+          type: text
+        - name: originating_base_latitude
+          description: The latitude of the originating taxi base.
+          type: text
+        - name: originating_base_longitude
+          description: The longitude of the originating taxi base.
+          type: text
+        - name: originating_base_type
+          description: The type of the originating taxi base.
+          type: text
+        - name: originating_base_entity_name
+          description: The company name of the originating taxi base.
+          type: text
+        - name: pickup_hour
+          description: The hour of the pick up.
+          type: numeric
+        - name: dropoff_hour
+          description: The hour of the drop off.
+          type: numeric
+        
