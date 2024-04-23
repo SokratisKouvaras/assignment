@@ -98,3 +98,5 @@ docker-compose up -d
 cd ingestion
 docker build -t ingestion .
 docker run --net=host ingestion
+
+## Insights
