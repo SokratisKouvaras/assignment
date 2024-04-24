@@ -9,11 +9,6 @@ services:
       - 'postgresql_data:/bitnami/postgresql'
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
-    deploy:
-      resources:
-        reservations:
-          cpus: '4'
-          memory: 6G
 
 volumes:
   postgresql_data:
