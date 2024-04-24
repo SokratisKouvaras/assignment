@@ -1,0 +1,112 @@
+version: 2
+
+sources:
+  - name: public
+    config:
+      enabled: true
+    tables:
+      - name: fhvhv_tripdata_2024_01
+        description: '{{ doc("FHVHV") }}'
+        columns:
+          - name: hvfhs_license_num
+            description: '{{ doc("hvfhs_license_num") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['HV0002', 'HV0003','HV0004','HV0005']
+                config:
+                  severity: warn
+          - name: dispatching_base_num
+            description: '{{ doc("dispatching_base_num") }}'
+            type: text
+          - name: originating_base_num
+            description: '{{ doc("originating_base_num") }}'
+            type: text
+          - name: request_datetime
+            description: '{{ doc("request_datetime") }}'
+            type: text
+          - name: on_scene_datetime
+            description: '{{ doc("on_scene_datetime") }}'
+            type: text
+          - name: pickup_datetime
+            description: '{{ doc("pickup_datetime") }}'
+            type: text
+          - name: dropoff_datetime
+            description: '{{ doc("dropoff_datetime") }}'
+            type: text
+          - name: "PULocationID"
+            description: '{{ doc("pu_location_id") }}'
+            type: text
+          - name: "DOLocationID"
+            description: '{{ doc("do_location_id") }}'
+            type: text
+          - name: trip_miles
+            description: '{{ doc("trip_miles") }}'
+            type: text
+          - name: trip_time
+            description: '{{ doc("trip_time") }}'
+            type: text
+          - name: base_passenger_fare
+            description: '{{ doc("base_passenger_fare") }}'
+            type: text
+          - name: tolls
+            description: '{{ doc("tolls") }}'
+            type: text
+          - name: bcf
+            description: '{{ doc("bcf") }}'
+            type: text
+          - name: sales_tax
+            description: '{{ doc("sales_tax") }}'
+            type: text
+          - name: congestion_surcharge
+            description: '{{ doc("congestion_surcharge") }}'
+            type: text
+          - name: airport_fee
+            description: '{{ doc("airport_fee") }}'
+            type: text
+          - name: tips
+            description: '{{ doc("tips") }}'
+            type: text
+          - name: driver_pay
+            description: '{{ doc("driver_pay") }}'
+            type: text
+          - name: shared_request_flag
+            description: '{{ doc("shared_request_flag") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
+          - name: shared_match_flag
+            description: '{{ doc("shared_match_flag") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
+          - name: access_a_ride_flag
+            description: '{{ doc("access_a_ride_flag") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
+          - name: wav_request_flag
+            description: '{{ doc("wav_request_flag") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn
+          - name: wav_match_flag
+            description: '{{ doc("wav_match_flag") }}'
+            type: text
+            tests:
+            - accepted_values:
+                values: ['Y', 'N']
+                config:
+                  severity: warn

@@ -1,0 +1,42 @@
+version: 2
+seeds:
+  - name: taxi_zone_lookup
+    description: '{{ doc("seed_taxi_zone_lookup") }}'
+    columns:
+      - name: LocationID
+        description: '{{ doc("seed_locationid") }}'
+      - name: Borough
+        description: '{{ doc("seed_borough") }}'
+      - name: Zone
+        description: '{{ doc("seed_zone") }}'
+      - name: service_zone
+        description: '{{ doc("seed_service_zone") }}'
+  - name: current_bases
+    description: '{{ doc("seed_current_bases") }}'
+    columns:
+      - name: license_number
+        description: '{{ doc("seed_license_number") }}'
+      - name: entity_name
+        description: '{{ doc("seed_entity_name") }}'
+      - name: telephone_number
+        description: '{{ doc("seed_telephone_number") }}'
+      - name: shl_endorsed
+        description: '{{ doc("seed_shl_endorsed") }}'
+      - name: building
+        description: '{{ doc("seed_building") }}'
+      - name: street
+        description: '{{ doc("seed_street") }}'
+      - name: city
+        description: '{{ doc("seed_city") }}'
+      - name: state
+        description: '{{ doc("seed_state") }}'
+      - name: postcode
+        description: '{{ doc("seed_postcode") }}'
+      - name: type_of_base
+        description: '{{ doc("seed_type_of_base") }}'
+      - name: latitude
+        description: '{{ doc("seed_latitude") }}'
+      - name: longitude
+        description: '{{ doc("seed_longitude") }}'
+      - name: date
+        description: '{{ doc("seed_date") }}'

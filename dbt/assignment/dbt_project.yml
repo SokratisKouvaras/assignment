@@ -1,0 +1,31 @@
+name: 'assignment'
+version: '1.0.0'
+config-version: 2
+require-dbt-version: 1.7.13
+profile: 'assignment'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+
+models:
+  assignment:
+    CleansedZone:
+      +materialized: view
+    DCZone:
+      +materialized: table
+    Marts:
+      +materialized: table
+
+seeds:
+  assignment:
+      +materialized: seed
+

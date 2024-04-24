@@ -1,0 +1,44 @@
+version: 2
+models:
+  - name: CleansedZone_TaxiBases
+    description: '{{ doc("seed_current_bases") }}'
+    columns:
+      - name: license_number
+        description: '{{ doc("seed_license_number") }}'
+        type: text
+      - name: entity_name
+        description: '{{ doc("seed_entity_name") }}'
+        type: text
+      - name: telephone_number
+        description: '{{ doc("seed_telephone_number") }}'
+        type: text
+      - name: shl_endorsed
+        description: '{{ doc("seed_shl_endorsed") }}'
+        type: text
+      - name: building
+        description: '{{ doc("seed_building") }}'
+        type: text
+      - name: street
+        description: '{{ doc("seed_street") }}'
+        type: text
+      - name: city
+        description: '{{ doc("seed_city") }}'
+        type: text
+      - name: state
+        description: '{{ doc("seed_state") }}'
+        type: text
+      - name: postcode
+        description: '{{ doc("seed_postcode") }}'
+        type: text
+      - name: type_of_base
+        description: '{{ doc("seed_type_of_base") }}'
+        type: text
+      - name: latitude
+        description: '{{ doc("seed_latitude") }}'
+        type: text
+      - name: longitude
+        description: '{{ doc("seed_longitude") }}'
+        type: text
+      - name: date
+        description: '{{ doc("seed_date") }}'
+        type: date

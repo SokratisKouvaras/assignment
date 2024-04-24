@@ -1,0 +1,165 @@
+version: 2
+models:
+  - name: DCZone_DC_Trips
+    description: '{{ doc("DCZone_DC_Trips") }}'
+    columns:
+        - name: dw_trip_id
+          description: '{{ doc("DCZone_DC_Trips_dw_trip_id") }}'
+          tests:
+            - unique:
+                config:
+                  severity: warn
+            - not_null:
+                config:
+                  severity: warn
+        - name: hvfhs_license_num
+          description: '{{ doc("CleansedZone_hvfhs_license_num") }}'
+          type: text
+        - name: dispatching_base_num
+          description: '{{ doc("CleansedZone_dispatching_base_num") }}'
+          type: text
+        - name: originating_base_num
+          description: '{{ doc("CleansedZone_originating_base_num") }}'
+          type: text
+        - name: request_datetime
+          description: '{{ doc("CleansedZone_request_datetime") }}'
+          type: timestamp
+        - name: request_date
+          description: '{{ doc("CleansedZone_request_datetime") }}'
+          type: date
+        - name: on_scene_datetime
+          description: '{{ doc("CleansedZone_on_scene_datetime") }}'
+          type: timestamp
+        - name: on_scene_date
+          description: '{{ doc("CleansedZone_on_scene_datetime") }}'
+          type: date
+        - name: pickup_datetime
+          description: '{{ doc("CleansedZone_pickup_datetime") }}'
+          type: timestamp
+        - name: pickup_date
+          description: '{{ doc("CleansedZone_pickup_datetime") }}'
+          type: date
+        - name: dropoff_datetime
+          description: '{{ doc("CleansedZone_dropoff_datetime") }}'
+          type: timestamp
+        - name: dropoff_date
+          description: '{{ doc("CleansedZone_dropoff_datetime") }}'
+          type: date
+        - name: pu_location_id
+          description: '{{ doc("CleansedZone_pu_location_id") }}'
+          type: int
+        - name: do_location_id
+          description: '{{ doc("CleansedZone_do_location_id") }}'
+          type: int
+        - name: trip_miles
+          description: '{{ doc("CleansedZone_trip_miles") }}'
+          type: float
+        - name: trip_time
+          description: '{{ doc("CleansedZone_trip_time") }}'
+          type: float
+        - name: base_passenger_fare
+          description: '{{ doc("CleansedZone_base_passenger_fare") }}'
+          type: float
+        - name: tolls
+          description: '{{ doc("CleansedZone_tolls") }}'
+          type: float
+        - name: bcf
+          description: '{{ doc("CleansedZone_bcf") }}'
+          type: float
+        - name: sales_tax
+          description: '{{ doc("CleansedZone_sales_tax") }}'
+          type: float
+        - name: congestion_surcharge
+          description: '{{ doc("CleansedZone_congestion_surcharge") }}'
+          type: float
+        - name: airport_fee
+          description: '{{ doc("CleansedZone_airport_fee") }}'
+          type: float
+        - name: tips
+          description: '{{ doc("CleansedZone_tips") }}'
+          type: float
+        - name: driver_pay
+          description: '{{ doc("CleansedZone_driver_pay") }}'
+          type: float
+        - name: shared_request_flag
+          description: '{{ doc("CleansedZone_shared_request_flag") }}'
+          type: boolean
+        - name: shared_match_flag
+          description: '{{ doc("CleansedZone_shared_match_flag") }}'
+          type: boolean
+        - name: access_a_ride_flag
+          description: '{{ doc("CleansedZone_access_a_ride_flag") }}'
+          type: boolean
+        - name: wav_request_flag
+          description: '{{ doc("CleansedZone_wav_request_flag") }}'
+          type: boolean
+        - name: wav_match_flag
+          description: '{{ doc("CleansedZone_wav_match_flag") }}'
+          type: boolean
+        - name: is_airport_trip
+          description: A boolean indicating if the trip was from/to airport.
+          type: boolean 
+        - name: is_local_trip
+          description: A boolean indicating if the trip was with the same location id.
+          type: boolean 
+        - name: is_happy_customer
+          description: A boolean indicating if the customer was happy enough to include a tip.
+          type: boolean
+        - name: company_name
+          description: The name of the company that the taxi base belongs to.
+          type: boolean
+        - name: pick_up_borough
+          description: The borough the pick up point belongs to.
+          type: text
+        - name: pick_up_zone
+          description: The zone the pick up point belongs to.
+          type: text
+        - name: pick_up_service_zone
+          description: The service zone the pick up point belongs to.
+          type: text
+        - name: drop_off_borough
+          description: The brorough of the drop off point.
+          type: text
+        - name: drop_off_zone
+          description: The zone of the drop off point.
+          type: text
+        - name: drop_off_service_zone
+          description: The service zone of the drop off point.
+          type: text
+        - name: pickup_week
+          description: The number of ISO week the pickup occured.
+          type: numeric
+        - name: dropoff_week
+          description: The number of ISO week the dropoff occured.
+          type: numeric
+        - name: dispatching_base_latitude
+          description: The latitude of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_longitude
+          description: The longitude of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_type
+          description: The type of the dispatching taxi base.
+          type: text
+        - name: dispatching_base_entity_name
+          description: The company name of the dispatching taxi base.
+          type: text
+        - name: originating_base_latitude
+          description: The latitude of the originating taxi base.
+          type: text
+        - name: originating_base_longitude
+          description: The longitude of the originating taxi base.
+          type: text
+        - name: originating_base_type
+          description: The type of the originating taxi base.
+          type: text
+        - name: originating_base_entity_name
+          description: The company name of the originating taxi base.
+          type: text
+        - name: pickup_hour
+          description: The hour of the pick up.
+          type: numeric
+        - name: dropoff_hour
+          description: The hour of the drop off.
+          type: numeric
+        

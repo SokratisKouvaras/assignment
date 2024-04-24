@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: CleansedZone_TaxiZones
+    description: '{{ doc("seed_taxi_zone_lookup") }}'
+    columns:
+      - name: LocationID
+        description: '{{ doc("seed_locationid") }}'
+        type: integer
+      - name: Borough
+        description: '{{ doc("seed_borough") }}'
+        type: text
+      - name: Zone
+        description: '{{ doc("seed_zone") }}'
+        type: text
+      - name: service_zone
+        description: '{{ doc("seed_service_zone") }}'
+        type: text
