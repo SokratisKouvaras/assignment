@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 WORKDIR /usr/src/app/assignment
-CMD [ "build", "--profiles-dir", "profiles", "--fail-fast" ]
+CMD [ "build", "--profiles-dir", "profiles", "--fail-fast", "--full-refresh" ]
