@@ -137,7 +137,7 @@ def cleanup(old_pg_table_name, new_pg_table_name):
         )
     except Exception as e:
         logger.warning(
-            f"An exception occured while trying to replace {old_pg_table_name} with {new_pg_table_name}"
+            f"An exception occured while trying to replace {old_pg_table_name} with {new_pg_table_name}:{e}"
         )
 
 
