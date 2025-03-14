@@ -121,7 +121,7 @@ def cleanup(old_pg_table_name, new_pg_table_name):
     from sqlalchemy import text
 
     sql = f"""
-    DROP TABLE IF EXISTS {new_pg_table_name} CASCADE;
+    DROP TABLE IF EXISTS {new_pg_table_name};
     ALTER TABLE {old_pg_table_name} RENAME TO {new_pg_table_name};
     """
     try:
@@ -157,5 +157,4 @@ def main(dataset="fhvhv_tripdata", year="2024", month="01"):
 
 
 if __name__ == "__main__":
-    #main()
-    cleanup('fhvhv_tripdata_2024_01_2024_04_24_08_40_34','fhvhv_tripdata_2024_01')
+    main()
