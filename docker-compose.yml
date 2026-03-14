@@ -2,13 +2,15 @@ version: '3'
 
 services:
   postgresql:
-    image: docker.io/bitnami/postgresql:16
+    image: postgres:16
     ports:
       - '5432:5432'
     volumes:
       - 'postgresql_data:/bitnami/postgresql'
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+      - 'POSTGRES_DB=postgres'
 
 volumes:
   postgresql_data:
